@@ -1,12 +1,14 @@
 export type Weather = 'sunny' | 'rainy' | 'cloudy' | 'windy' | 'stormy'
 export type Visibility = 'great' | 'good' | 'OK' | 'poor'
-//una interfaces esta pensada para ser extendida con otro contrato
+// una interfaces esta pensada para ser extendida con otro contrato
 export interface DiaryEntry {
-    id: number,
-    date: string,
-    weather: Weather,
-    visibility: Visibility,
-    comment: string
+  id: number
+  date: string
+  weather: Weather
+  visibility: Visibility
+  comment: string
 }
 
-export type NoSensitiveInfoDiaryEntry = Pick<DiaryEntry, 'id'| 'date'|'weather' |'visibility'>
+export type NoSensitiveInfoDiaryEntry = Pick<DiaryEntry, 'id' | 'date' | 'weather' | 'visibility'>
+
+export type newDiaryEntry = Omit<DiaryEntry, 'id'>
