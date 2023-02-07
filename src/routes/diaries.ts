@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
     newDiaryEntry = diaryServices.addDiary(newDiaryEntry)
 
     res.json(newDiaryEntry)
-  } catch (e: any) {
+  } catch (e) {
     res.status(400).send(e.message)
   }
 })
