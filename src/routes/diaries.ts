@@ -1,5 +1,6 @@
 import express from 'express' // ESModules
 import * as diaryServices from '../services/diaryServices'
+import toNewDiaryEntry from '../utils'
 
 const router = express.Router()
 
@@ -13,9 +14,18 @@ router.get('/:id', (req, res) => {
     ? res.send(diary?.comment)
     : res.sendStatus(404)
 })
+// integrando post de servicios de mostrar el clima mediante un json
+router.post('/', (req, res) => {
+  // integrando try catch para devolver la informacion correcta los tipos de cada una de los objetos
+  try {
+    const newDiaryEntry = toNewDiaryEntry(req.body)
 
-router.post('/', (_req, res) => {
-  res.send('Saving a diary!')
+    const newDiaryEntry = diaryServices.addDiary(newDiaryEntry)
+
+    res.json(newDiaryEntry)
+  } catch (e) {
+    res.status(400).send(e.message)
+  }
 })
 
 export default router
