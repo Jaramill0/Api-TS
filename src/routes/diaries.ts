@@ -18,9 +18,9 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   // integrando try catch para devolver la informacion correcta los tipos de cada una de los objetos
   try {
-    const newDiaryEntry = toNewDiaryEntry(req.body)
+    let newDiaryEntry = toNewDiaryEntry(req.body)
 
-    const newDiaryEntry = diaryServices.addDiary(newDiaryEntry)
+    newDiaryEntry = diaryServices.addDiary(newDiaryEntry)
 
     res.json(newDiaryEntry)
   } catch (e) {
